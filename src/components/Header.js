@@ -7,8 +7,8 @@ const Header = () => {
     const userData  = localStorage.getItem('user_info');
     function logout()
     {
-            localStorage.clear();
-            Navigate("/login");
+        localStorage.clear();
+        Navigate("/login");
     }
    function profile()
    {
