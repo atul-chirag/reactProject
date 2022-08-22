@@ -46,3 +46,9 @@
 .navbar_brand_nav{
   background-color: #fd6600!important;
 }
+.app_bg_color{
+  background-color: #cbcbcb;
+}
+.login_form{
+  padding-top: 60px;
+}

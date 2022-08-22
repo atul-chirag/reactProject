@@ -5,6 +5,7 @@ import AddProduct     from "./components/AddProduct";
 import UpdateProduct  from "./components/UpdateProduct";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Profile        from "./components/Profile";
+import PasswordReset from "./components/PasswordReset";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route path='/update'   element= {<ProtectedRoutes  Components = {UpdateProduct}/>}></Route>
           <Route path='/list'     element= {<ProtectedRoutes  Components = {AddProduct}/>}></Route>
           <Route path='/profile'  element= {<ProtectedRoutes  Components = {Profile}/>}></Route>
+          {/* <Route path='/reset/password'  element= {<ProtectedRoutes  Components = {PasswordReset}/>}></Route> */}
         </Routes>
       </BrowserRouter>
     </div>
