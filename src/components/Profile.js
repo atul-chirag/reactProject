@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Card from 'react-bootstrap/Card';
 export default function Profile() {
 
     const [name, setName] = useState("");
@@ -75,7 +76,7 @@ export default function Profile() {
         }
     }
 
-    async function handleUpdate()
+    async function handleResetPassword()
     {   
         const user = JSON.parse(localStorage.getItem('user_info'));
         const payload  = {email,password: oldPassword ,new_password: newPassword,token:user.token}
@@ -98,81 +99,85 @@ export default function Profile() {
     return (
         <div>
             <Header />
-            <div className='col-sm-4 offset-sm-4'>
-                <h1>Profile</h1>
-            </div>
-            <div className='col-sm-4 offset-sm-4'>
-                <div className="row g-3">
-                    <div className="col">
-                        <input type="text" className="form-control" defaultValue={data.name} placeholder="Name" aria-label="Name"
-                            onChange={(e) => setName(e.target.value)} />
+            <Card>
+                <Card.Body>
+                    <div className='col-sm-4 offset-sm-4'>
+                        <h1>Profile</h1>
                     </div>
-                    <div className="col">
-                        <input type="text" className="form-control" defaultValue={data.email} disabled placeholder="Email" aria-label="Email" />
+                    <div className='col-sm-4 offset-sm-4'>
+                        <div className="row g-3">
+                            <div className="col">
+                                <input type="text" className="form-control" defaultValue={data.name} placeholder="Name" aria-label="Name"
+                                    onChange={(e) => setName(e.target.value)} />
+                            </div>
+                            <div className="col">
+                                <input type="text" className="form-control" defaultValue={data.email} disabled placeholder="Email" aria-label="Email" />
+                            </div>
+                        </div>
+                        <br />
+                        <div className="row g-3">
+                            <div className="col">
+                                <input type="text" className="form-control" defaultValue={data.phone} placeholder="Phone" aria-label="Phone"
+                                    onChange={(e) => setPhone(e.target.value)} />
+                            </div>
+                            <div className="col">
+                                <input type="text" className="form-control" defaultValue={data.address} placeholder="Address" aria-label="Address"
+                                    onChange={(e) => setAddress(e.target.value)} />
+                            </div>
+                        </div>
+                        <br />
+                        <div className="row g-3">
+                            <div className="col">
+                                <input type="text" className="form-control" defaultValue={data.city} placeholder="City" aria-label="City"
+                                    onChange={(e) => setCity(e.target.value)} />
+                            </div>
+                            <div className="col">
+                                <input type="text" className="form-control" defaultValue={data.state} placeholder="State" aria-label="State"
+                                    onChange={(e) => setState(e.target.value)} />
+                            </div>
+                        </div>
+                        <br />
+                        <div className="row g-3">
+                            <div className="col">
+                                <input type="text" className="form-control" defaultValue={data.zipcode} placeholder="ZipCode" aria-label="ZipCode"
+                                    onChange={(e) => setZipcode(e.target.value)} />
+                            </div>
+                            <div className="col">
+                                <input type="text" className="form-control" defaultValue={data.country} placeholder="Country" aria-label="Country"
+                                    onChange={(e) => setCountry(e.target.value)} />
+                            </div>
+                        </div>
+                        <br />
+                        <div className="row g-3">
+                            <div className="col">
+                                <button className='btn btn-secondary mx-6' onClick={() => Navigate('/list')}>Back</button>
+                                <button className='btn btn-primary  mx-2' onClick={updateProfile}>Update</button>
+                                <span className='mx-2' onClick={() => { handleShow() }}>Reset Password</span>
+                                <Modal show={show} onHide={handleClose}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Set/Reset Password </Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <div className="row g-1">
+                                            <input type="password" className="form-control"  placeholder="Old Password" aria-label="Old Password"
+                                            onChange={(e) => setOldPassword(e.target.value)} />
+                                        </div>
+                                        <br/>
+                                        <div className="col">
+                                            <input type="password" className="form-control" placeholder="New Password" aria-label="New Password"
+                                                onChange={(e) => setNewPassword(e.target.value)} />
+                                        </div>
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        <Button variant="secondary" onClick={handleClose}>Close</Button>
+                                        <Button variant="primary"   onClick={handleResetPassword}>Change</Button>
+                                    </Modal.Footer>
+                                </Modal>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <br />
-                <div className="row g-3">
-                    <div className="col">
-                        <input type="text" className="form-control" defaultValue={data.phone} placeholder="Phone" aria-label="Phone"
-                            onChange={(e) => setPhone(e.target.value)} />
-                    </div>
-                    <div className="col">
-                        <input type="text" className="form-control" defaultValue={data.address} placeholder="Address" aria-label="Address"
-                            onChange={(e) => setAddress(e.target.value)} />
-                    </div>
-                </div>
-                <br />
-                <div className="row g-3">
-                    <div className="col">
-                        <input type="text" className="form-control" defaultValue={data.city} placeholder="City" aria-label="City"
-                            onChange={(e) => setCity(e.target.value)} />
-                    </div>
-                    <div className="col">
-                        <input type="text" className="form-control" defaultValue={data.state} placeholder="State" aria-label="State"
-                            onChange={(e) => setState(e.target.value)} />
-                    </div>
-                </div>
-                <br />
-                <div className="row g-3">
-                    <div className="col">
-                        <input type="text" className="form-control" defaultValue={data.zipcode} placeholder="ZipCode" aria-label="ZipCode"
-                            onChange={(e) => setZipcode(e.target.value)} />
-                    </div>
-                    <div className="col">
-                        <input type="text" className="form-control" defaultValue={data.country} placeholder="Country" aria-label="Country"
-                            onChange={(e) => setCountry(e.target.value)} />
-                    </div>
-                </div>
-                <br />
-                <div className="row g-3">
-                    <div className="col">
-                        <button className='btn btn-secondary mx-6' onClick={() => Navigate('/list')}>Back</button>
-                        <button className='btn btn-primary  mx-2' onClick={updateProfile}>Update</button>
-                        <span className='mx-2' onClick={() => { handleShow() }}>Reset Password</span>
-                        <Modal show={show} onHide={handleClose}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Set/Reset Password </Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <div className="row g-1">
-                                    <input type="password" className="form-control"  placeholder="Old Password" aria-label="Old Password"
-                                    onChange={(e) => setOldPassword(e.target.value)} />
-                                </div>
-                                <br/>
-                                <div className="col">
-                                    <input type="password" className="form-control" placeholder="New Password" aria-label="New Password"
-                                        onChange={(e) => setNewPassword(e.target.value)} />
-                                </div>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>Close</Button>
-                                <Button variant="primary" onClick={handleUpdate}>Change</Button>
-                            </Modal.Footer>
-                        </Modal>
-                    </div>
-                </div>
-            </div>
+                </Card.Body>
+            </Card>
         </div>
     );
 }

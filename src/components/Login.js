@@ -33,7 +33,7 @@ export default function Login() {
     }
     else {
       localStorage.setItem('user_info', JSON.stringify(result.data[0]));
-      Navigate("/list");
+      Navigate("/machinery");
     }
   }
 
@@ -62,7 +62,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)} /><br />
         </div>
         <div className='col-sm-5 offset-sm-4'>
-          <button className='btn btn-primary' type='submit' onClick={login}>Login</button>
+          <button className='btn btn-primary' type='submit' style={{backgroundColor: "#FD6600"}} onClick={login}>Login</button>
         </div>
       </div>
     </>

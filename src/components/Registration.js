@@ -1,5 +1,6 @@
 import '../App.css';
 import Headers from './Header';
+import Form from 'react-bootstrap/Form';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 export default function Registration() {
@@ -27,12 +28,13 @@ export default function Registration() {
       }
     });
     result = await result.json();
-    if (result.msg) {
-      setError(result.msg);
-    }
-    else if (localStorage.getItem('user_info')) {
+    if (!result.msg) 
+    {
       localStorage.setItem('user_info', JSON.stringify(result.data[0]));
-      Navigate("/list");
+      Navigate("/machinery");
+    }
+    else if (result.msg) {
+      setError(result.msg);
     }
   }
 
@@ -42,8 +44,8 @@ export default function Registration() {
       <div className='col-sm-5 offset-sm-3'>
         <h1 className='App'>Register Here</h1>
         {
-          error.length > 0 ? error.map((value,i) =>
-            <div className='col-sm-4 offset-sm-4 my-2'  key={i}><span className='text-danger'>{value}</span></div>
+          error.length > 0 ? error.map((value, i) =>
+            <div className='col-sm-4 offset-sm-4 my-2' key={i}><span className='text-danger'>{value}</span></div>
           ) : null
         }
         <div className='col-sm-5 offset-sm-4'>
@@ -68,14 +70,16 @@ export default function Registration() {
             onChange={(e) => setPassword(e.target.value)} /><br />
         </div>
         <div className='col-sm-5 offset-sm-4'>
-          <input type="text"
-            placeholder='enter your access'
-            value={access}
-            className='form-control'
-            onChange={(e) => setAccess(e.target.value)} /><br />
+          <Form.Select onChange={(e) => setAccess(e.target.value)}>
+            <option>Select Access</option>
+            <option value="line_operator">Line Operator</option>
+            <option value="line_manager">Line Manager</option>
+            <option value="operator">Operator</option>
+            <option value="supervisor">Supervisor</option>
+          </Form.Select>
         </div>
-        <div className='col-sm-5 offset-sm-4'>
-          <button className='btn btn-primary' onClick={signUp} type="submit">Submit</button>
+        <div className='col-sm-5 offset-sm-4 my-3'>
+          <button className='btn btn-primary' onClick={signUp}  style={{backgroundColor: "#FD6600"}} type="submit">Submit</button>
         </div>
       </div>
     </>

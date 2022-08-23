@@ -52,3 +52,14 @@
 .login_form{
   padding-top: 60px;
 }
+.navbar-brand {
+  
+  padding-left: 6px;
+  color: white;
+  
+}
+.nav-btn-hover:hover {
+  background-color:rgb(251, 251, 251);
+  border-radius: 6px;
+  padding: 5px;
+}

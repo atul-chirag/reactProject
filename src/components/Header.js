@@ -1,5 +1,13 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { Link,useNavigate} from 'react-router-dom';
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { GiMachineGun } from "react-icons/gi";
+import { BiSupport } from "react-icons/bi";
+import { FiSettings,FiLogOut } from "react-icons/fi";
+import { MdOutlineFreeCancellation } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
+
+
 const Header = () => {
 
     const Navigate  = useNavigate();
@@ -7,8 +15,8 @@ const Header = () => {
     const userData  = localStorage.getItem('user_info');
     function logout()
     {
-        localStorage.clear();
-        Navigate("/login");
+            localStorage.clear();
+            Navigate("/login");
     }
    function profile()
    {
@@ -18,7 +26,7 @@ const Header = () => {
         <div>
             <Navbar className="navbar_brand_nav">
                 <Container>
-                    <Navbar.Brand  ><img  className="navbar-brand" src="https://dev.cap-tek.com:9004/assets/img/monisol.png" alt="logo" /></Navbar.Brand>
+                    <Navbar.Brand><img  className= "" src=""></img> </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
@@ -26,19 +34,31 @@ const Header = () => {
                                 userData ?
                                 <>
                                     <li className="nav-item">
-                                        <Link className="navbar-brand" to="/list">List</Link>
+                                        <Link className="navbar-brand nav-btn-hover" to="/machinery"> <GiMachineGun /> Machinery </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="navbar-brand" to="/update">Update</Link>
+                                        <Link className="navbar-brand nav-btn-hover" to="/workers"><FaRegCalendarAlt /> Workers</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="navbar-brand nav-btn-hover" to="/supportmaneger"><BiSupport/> Support</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="navbar-brand nav-btn-hover" to="/settings"><FiSettings/> Settings</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="navbar-brand nav-btn-hover" to="/leave"><MdOutlineFreeCancellation/> Leave</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="navbar-brand nav-btn-hover" to="/profile"><CgProfile/> Profile</Link>
                                     </li>
                                 </>
                                 :
                                 <>
                                     <li className="nav-item">
-                                        <Link className="navbar-brand" to="/login">Login</Link>
+                                        <Link className="navbar-brand nav-btn-hover" to="/login">Login</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="navbar-brand" to="/register">Register</Link>
+                                        <Link className="navbar-brand nav-btn-hover" to="/register">Register</Link>
                                     </li>
                                 </>
                             }
@@ -46,10 +66,9 @@ const Header = () => {
                         {   
                             userData ?
                             <Nav>
-                                <NavDropdown title={user && user.access} id="basic-nav-dropdown">
-                                    <NavDropdown.Item onClick={profile}>My Profile</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
-                                </NavDropdown>
+                                {/* <NavDropdown title={user && user.access} id="basic-nav-dropdown"> */}
+                                    <NavDropdown.Item  className="navbar-brand nav-btn-hoveron" Click={logout}><FiLogOut/> Logout</NavDropdown.Item>
+                                {/* </NavDropdown> */}
                             </Nav>
                             :null
                         }
