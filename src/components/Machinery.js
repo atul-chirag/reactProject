@@ -41,10 +41,31 @@ export default function Machinery() {
     result = await result.json();
     setData(result.data)
   }
-  function handleUpdate(item) {
-    const user = JSON.parse(localStorage.getItem('user_info'));
-    const payload = { ...item,token: user.token }
-    console.log(payload)
+
+  async function handleUpdate(item) {
+    // const user = JSON.parse(localStorage.getItem('user_info'));
+    // const payload = { ...item,token: user.token }
+    // let result = await fetch("https://dev.cap-tek.com:9005/api/machine/update",
+    // {
+    //   method :"POST",
+    //   body:JSON.stringify(payload),
+    //   headers:
+    //   {
+    //     "Content-Type":"application/json",
+    //     "Accept":"application/josn"
+    //   }
+    // })
+    //   result = await result.json();
+    //   setShow(false)
+
+      // if(result.msg === 'success')
+      // { 
+      //   setShow(false)
+      //   alert("data has been updated successfully");
+      // }else if (result.msg !== 'success')
+      // {
+      //   alert("Oops! something went wrong");
+      // }
   }
   return (
     <div>
@@ -79,7 +100,7 @@ export default function Machinery() {
                   <td><a target="_blank" href={item.qr_code}>Code</a></td>
                   <td>
                     <span className="mx-2" onClick={() => { handleShow() }}><FaEdit /> </span>
-                    <Modal show={show} onHide={handleClose}>
+                    <Modal show={show} onHide={handleClose} key= {i}>
                       <Modal.Header closeButton>
                         <Modal.Title >Edit Machinery</Modal.Title>
                       </Modal.Header>

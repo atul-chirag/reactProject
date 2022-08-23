@@ -67,7 +67,7 @@ const Header = () => {
                             userData ?
                             <Nav>
                                 {/* <NavDropdown title={user && user.access} id="basic-nav-dropdown"> */}
-                                    <NavDropdown.Item  className="navbar-brand nav-btn-hoveron" Click={logout}><FiLogOut/> Logout</NavDropdown.Item>
+                                    <NavDropdown.Item  className="navbar-brand nav-btn-hoveron" onClick={logout}><FiLogOut/> Logout</NavDropdown.Item>
                                 {/* </NavDropdown> */}
                             </Nav>
                             :null
