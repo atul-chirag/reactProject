@@ -9,12 +9,13 @@ import Profile          from "./components/Profile";
 import Worker           from "./components/Worker";
 import Leave            from "./components/Leave";
 import Login            from "./components/Login";
-
+import Header           from "./components/Header";
 
 export default function App() {
   return (
     <div>
         <BrowserRouter>
+        <Header/>
         <Routes>
           <Route path='/'               element= {<Login/>}></Route>
           <Route path='/login'          element= {<Login/>}></Route>

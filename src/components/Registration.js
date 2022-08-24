@@ -40,7 +40,6 @@ export default function Registration() {
 
   return (
     <>
-      <Headers />
       <div className='col-sm-5 offset-sm-3'>
         <h1 className='App'>Register Here</h1>
         {

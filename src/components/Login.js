@@ -1,18 +1,18 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react';
-import Headers from './Header';
-
 import { useNavigate } from 'react-router-dom';
+import Headers         from './Header';
+
 export default function Login() {
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState([]);
-  const Navigate = useNavigate();
+  const [error, setError]       = useState([]);
+  const Navigate                = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem('user_info')) {
-      Navigate("/list");
+      Navigate("/machinery");
     }
   }, []);
 
@@ -39,7 +39,6 @@ export default function Login() {
 
   return (
     <>
-      <Headers />   
       <div className='login_form col-sm-5 offset-sm-3'>
         <h1 className='App'>Login Page</h1>
         {

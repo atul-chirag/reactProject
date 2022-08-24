@@ -5,15 +5,13 @@ import Table from 'react-bootstrap/Table';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function Machinery() {
   const [data, setData] = useState("");
   const [name, setName] = useState("");
   const [serial_number, setSerialNumber] = useState("");
   const [vibration_magnitude, setVibrationMagnitude] = useState("");
-
-
-
 
   // Model Properties 
   const [show, setShow] = useState(false);
@@ -43,33 +41,32 @@ export default function Machinery() {
   }
 
   async function handleUpdate(item) {
-    // const user = JSON.parse(localStorage.getItem('user_info'));
-    // const payload = { ...item,token: user.token }
-    // let result = await fetch("https://dev.cap-tek.com:9005/api/machine/update",
-    // {
-    //   method :"POST",
-    //   body:JSON.stringify(payload),
-    //   headers:
-    //   {
-    //     "Content-Type":"application/json",
-    //     "Accept":"application/josn"
-    //   }
-    // })
-    //   result = await result.json();
-    //   setShow(false)
+    const user = JSON.parse(localStorage.getItem('user_info'));
+    const payload = { ...item,token: user.token }
+    let result = await fetch("https://dev.cap-tek.com:9005/api/machine/update",
+    {
+      method :"POST",
+      body:JSON.stringify(payload),
+      headers:
+      {
+        "Content-Type":"application/json",
+        "Accept":"application/josn"
+      }
+    })
+      result = await result.json();
+      setShow(false)
 
-      // if(result.msg === 'success')
-      // { 
-      //   setShow(false)
-      //   alert("data has been updated successfully");
-      // }else if (result.msg !== 'success')
-      // {
-      //   alert("Oops! something went wrong");
-      // }
+      if(result.msg === 'success')
+      { 
+        setShow(false)
+        alert("data has been updated successfully");
+      }else if (result.msg !== 'success')
+      {
+        alert("Oops! something went wrong");
+      }
   }
   return (
     <div>
-      <Headers />
       <div className="container-fluid">
         <h4 style={{ backgroundColor: "#F1F1F1" }}>Machinery
           <span className="float-right">
@@ -97,30 +94,30 @@ export default function Machinery() {
                   <td>{item.name}</td>
                   <td>{item.serial_number}</td>
                   <td>{item.vibration_magnitude}</td>
-                  <td><a target="_blank" href={item.qr_code}>Code</a></td>
+                  <td><a target="_blank" to={item.qr_code} style={{'color':'orange'}}>Code</a></td>
                   <td>
-                    <span className="mx-2" onClick={() => { handleShow() }}><FaEdit /> </span>
+                    <span className="mx-2" onClick={() => { handleShow() }} style={{'color':'orange'}}><FaEdit /> </span>
                     <Modal show={show} onHide={handleClose} key= {i}>
                       <Modal.Header closeButton>
                         <Modal.Title >Edit Machinery</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
                         <div className="row g-1">
-                          <label htmlFor="">Name*</label>
+                          <label htmlFor=""><b>Name<span className='text-danger'>*</span></b></label>
                           <input type="text" className="form-control" placeholder="Name*" aria-label="Name"
                           defaultValue={item.name}
                           onChange={(e) => setName(e.target.value)} />
                         </div>
                         <br />
                         <div className="col">
-                          <label htmlFor="">Serial Number*</label>
+                          <label htmlFor=""><b>Serial Number<span className='text-danger'>*</span></b></label>
                           <input type="text" className="form-control" placeholder="Serial Number*" aria-label="Serial Number"
                             defaultValue={item.serial_number}
                            onChange={(e) => setSerialNumber(e.target.value)} />
                         </div>
                         <br />
                         <div className="col">
-                          <label htmlFor="">Vibration Magnitude*</label>
+                          <label htmlFor=""><b>Vibration Magnitude<span className='text-danger'>*</span></b></label>
                           <input type="text" className="form-control" placeholder="Vibration Magnitude*" aria-label="Vibration Magnitude"
                            defaultValue={item.vibration_magnitude}
                           onChange={(e) => setVibrationMagnitude(e.target.value)}  />
@@ -135,7 +132,7 @@ export default function Machinery() {
                   </td>
                 </tr>
               )
-              : <p>Loading...</p>
+              :<Spinner animation="border" /> 
           }
         </tbody>
       </Table>

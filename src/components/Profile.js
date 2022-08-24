@@ -98,7 +98,6 @@ export default function Profile() {
 
     return (
         <div>
-            <Header />
             <Card>
                 <Card.Body>
                     <div className='col-sm-4 offset-sm-4'>

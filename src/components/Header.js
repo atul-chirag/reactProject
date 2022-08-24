@@ -1,32 +1,30 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
-import { Link,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { GiMachineGun } from "react-icons/gi";
 import { BiSupport } from "react-icons/bi";
-import { FiSettings,FiLogOut } from "react-icons/fi";
+import { FiSettings, FiLogOut } from "react-icons/fi";
 import { MdOutlineFreeCancellation } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 
 
 const Header = () => {
 
-    const Navigate  = useNavigate();
-    const user      = JSON.parse(localStorage.getItem('user_info'));
-    const userData  = localStorage.getItem('user_info');
-    function logout()
-    {
-            localStorage.clear();
-            Navigate("/login");
+    const Navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem('user_info'));
+    const userData = localStorage.getItem('user_info');
+    function logout() {
+        localStorage.clear();
+        Navigate("/login");
     }
-   function profile()
-   {
+    function profile() {
         Navigate("/profile");
-   }
+    }
     return (
         <div>
             <Navbar className="navbar_brand_nav">
                 <Container>
-                    <Navbar.Brand><img  className= "" src=""></img> </Navbar.Brand>
+                    <Navbar.Brand><img  className= "" src="https://dev.cap-tek.com:9004/assets/img/monisol.png" style={{'width':'100px'}}></img> </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
@@ -67,7 +65,7 @@ const Header = () => {
                             userData ?
                             <Nav>
                                 {/* <NavDropdown title={user && user.access} id="basic-nav-dropdown"> */}
-                                    <NavDropdown.Item  className="navbar-brand nav-btn-hoveron" onClick={logout}><FiLogOut/> Logout</NavDropdown.Item>
+                                    <NavDropdown.Item  className="navbar-brand nav-btn-hover" onClick={logout}><FiLogOut/> Logout</NavDropdown.Item>
                                 {/* </NavDropdown> */}
                             </Nav>
                             :null

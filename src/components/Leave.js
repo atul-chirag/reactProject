@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Headers from './Header';
 import Table from 'react-bootstrap/Table';
 import { FcPlus } from "react-icons/fc";
+// import Collapse from 'react-bootstrap/Collapse';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function Leave() {
   const [data, setData] = useState({});
+  // const [open, setOpen] = useState(false);
 
   useEffect(() => {
     getData();
@@ -28,10 +31,14 @@ export default function Leave() {
     result = await result.json();
     setData(result.data)
   }
+
+  function submit()
+  {
+    console.log('object')
+  }
   
   return (
     <div>
-      <Headers />
       <div className="container-fluid">
         <h4 style={{ backgroundColor: "#F1F1F1" }}>Leave
         </h4>
@@ -48,11 +55,11 @@ export default function Leave() {
           {
             data.length > 0 ?
               data.map((item, i) =>
-                <tr key={i}>
+                <tr>
                   {
                     item.inner_data.length > 0?
                     item.inner_data.map((inner_data)=>
-                    <td><FcPlus/> { inner_data.description}</td>
+                    <td><span onClick={submit}><FcPlus/></span></td>
                     )
                     :null
                   }
@@ -60,7 +67,7 @@ export default function Leave() {
                   <td>{item.email}</td>
                 </tr>
               )
-              : <p>Loading...</p>
+              : <Spinner animation="border" />
           }
         </tbody>
       </Table>

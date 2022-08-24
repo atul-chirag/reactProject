@@ -36,30 +36,24 @@
     transform: rotate(360deg);
   }
 }
+ .navbar_brand_nav{
+  background-color: #ff813d;
+}
 .nav_dropdown{
   align-content: center;
 }
 .navbar-brand{
-  top: right;
-  width: 90px;
-}
-.navbar_brand_nav{
-  background-color: #fd6600!important;
-}
+  align-items: left;
+  width: 100px;
+} 
 .app_bg_color{
   background-color: #cbcbcb;
 }
 .login_form{
   padding-top: 60px;
 }
-.navbar-brand {
-  
-  padding-left: 6px;
-  color: white;
-  
-}
 .nav-btn-hover:hover {
   background-color:rgb(251, 251, 251);
-  border-radius: 6px;
-  padding: 5px;
+  border-radius: 5px;
+  padding: 2px;
 }
